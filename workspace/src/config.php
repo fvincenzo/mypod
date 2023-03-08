@@ -26,7 +26,7 @@
     $files_url = $base_url.'/';
 
     // Location of getid3 folder, leave blank to disable. TRAILING SLASH REQ'D.
-    $getid3_dir = "";
+    $getid3_dir = "vendor/james-heinrich/getid3/getid3/";
 
     // ====================================================== Generic feed options
 
@@ -37,7 +37,7 @@
     $feed_link = getenv("MYPOD_DOMAIN");
 
     // Brief description
-    $feed_description = "My Private Podcast.";
+    $feed_description = "My Private Podcast";
 
     // Copyright / license information
     $feed_copyright = "Various Authors " . date("Y");

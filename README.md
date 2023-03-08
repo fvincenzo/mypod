@@ -40,7 +40,7 @@ services:
   mypod:
     image: "ghcr.io/fvincenzo/mypod:latest"
     container_name: "mypod"
-    command: sh -c "php-fpm8 && chmod 777 /var/run/php/php8-fpm.sock && nginx -g 'daemon off;'"
+    command: sh -c "php-fpm81 && chmod 777 /var/run/php/php81-fpm.sock && nginx -g 'daemon off;'"
     environment:
       MYPOD_DOMAIN: http://localhost:8000
     volumes:
