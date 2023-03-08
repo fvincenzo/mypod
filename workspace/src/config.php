@@ -55,11 +55,11 @@
     $feed_image = $feed_link . "/img/itunes_logo.png";
 
     // If your feed contains explicit material or not (yes, no, clean)
-    $feed_explicit = "clean";
+    $feed_explicit = "false";
 
     // iTunes major category of your feed
-    $feed_category = "General";
+    $feed_category = "News";
 
     // iTunes minor category of your feed
-    $feed_subcategory = "";
+    $feed_subcategory = "News Commentary";
 ?>

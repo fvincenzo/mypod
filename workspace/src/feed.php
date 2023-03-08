@@ -27,15 +27,13 @@ if(strlen($getid3_dir) != 0) {
 echo '<?xml version="1.0" encoding="utf-8" ?>';
 
 ?>
-<!-- generator="awesome-sauce/1.1" -->
-<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
-
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title><?php echo $feed_title; ?></title>
         <link><?php echo $feed_link; ?></link>
 
-        <!-- iTunes-specific metadata -->
         <itunes:author><?php echo $feed_author; ?></itunes:author>
+        <itunes:type>serial</itunes:type>
         <itunes:owner>
             <itunes:name><?php echo $feed_author; ?></itunes:name>
             <itunes:email><?php echo $feed_email; ?></itunes:email>
@@ -49,15 +47,13 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
 
         <itunes:summary><?php echo $feed_description; ?></itunes:summary>
 
-        <!-- Non-iTunes metadata -->
-        <category>Music</category>
+        <category><?php echo $feed_category; ?></category>
         <description><?php echo $feed_description; ?></description>
         
         <language><?php echo $feed_lang; ?></language>
         <copyright><?php echo $feed_copyright; ?></copyright>
         <ttl><?php echo $feed_ttl; ?></ttl>
 
-        <!-- The file listings -->
         <?php
         $directory = opendir($files_dir) or die($php_errormsg);
 
@@ -84,10 +80,15 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
                     $file_title = $id3_info["comments_html"]["title"][0];
                     $file_author = $id3_info["comments_html"]["artist"][0];
                     $file_duration = $id3_info["playtime_string"];
+                    $file_description = $id3_info["comments_html"]["title"][0];
+                
+                    sscanf($file_duration, "%d:%d:%d", $fd_hours, $fd_minutes, $fd_seconds);
+                    $file_duration_s = isset($fd_seconds) ? $fd_hours * 3600 + $fd_minutes * 60 + $fd_seconds : $fd_hours * 60 + $fd_minutes;
                 }
         ?>
 
         <item>
+            <itunes:episodeType>full</itunes:episodeType>
             <title><?php echo $file_title; ?></title>
             <link><?php echo $file_url; ?></link>
             
@@ -96,7 +97,7 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
                 <itunes:category text="<?php echo $feed_subcategory; ?>" />
             </itunes:category>
 
-            <category>Music</category>
+            <category><?php echo $feed_category; ?></category>
             <duration><?php echo $file_duration; ?></duration>
             
             <description><?php echo $file_description; ?></description>
@@ -105,6 +106,8 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
             <enclosure url="<?php echo $file_url; ?>" length="<?php echo $file_size; ?>" type="audio/mpeg" />
             <guid><?php echo $file_url; ?></guid>
             <author><?php echo $feed_email; ?></author>
+            <itunes:duration><?php echo $file_duration_s; ?></itunes:duration>
+            <itunes:explicit><?php echo $feed_explicit; ?></itunes:explicit>
         </item>
         <?php
             }
