@@ -47,7 +47,6 @@ services:
       - <podcasts>:/usr/share/nginx/html/podcasts
     ports:
       - "8000:80"
-      - "8001:443"
     restart: unless-stopped
 ```
 

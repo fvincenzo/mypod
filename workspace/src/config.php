@@ -16,15 +16,6 @@
     // Location of MP3's on server. TRAILING SLASH REQ'D.
     $files_dir = getcwd().'/podcasts/';
 
-    // Corresponding url for accessing the above directory. TRAILING SLASH REQ'D.
-    if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === 'off') {
-        $protocol = 'http://';
-    } else {
-        $protocol = 'https://';
-    }
-    $base_url = $protocol . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']);
-    $files_url = $base_url.'/';
-
     // Location of getid3 folder, leave blank to disable. TRAILING SLASH REQ'D.
     $getid3_dir = "vendor/james-heinrich/getid3/getid3/";
 
@@ -35,6 +26,9 @@
 
     // 'More info' link for your feed
     $feed_link = getenv("MYPOD_DOMAIN");
+
+    // Files URL
+    $files_url = $feed_link.'/';
 
     // Brief description
     $feed_description = "My Private Podcast";
