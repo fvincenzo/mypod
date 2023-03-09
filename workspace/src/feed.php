@@ -117,5 +117,5 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
     </channel>
 </rss>
 <?php
-    closedir($files_dir);
+    closedir($directory);
 ?>
