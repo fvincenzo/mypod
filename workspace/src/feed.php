@@ -80,7 +80,7 @@ echo '<?xml version="1.0" encoding="utf-8" ?>';
                     $file_title = $id3_info["comments_html"]["title"][0];
                     $file_author = $id3_info["comments_html"]["artist"][0];
                     $file_duration = $id3_info["playtime_string"];
-                    $file_description = $id3_info["comments_html"]["title"][0];
+                    $file_description = addslashes($id3_info["comments_html"]["title"][0]);
                 
                     sscanf($file_duration, "%d:%d:%d", $fd_hours, $fd_minutes, $fd_seconds);
                     $file_duration_s = isset($fd_seconds) ? $fd_hours * 3600 + $fd_minutes * 60 + $fd_seconds : $fd_hours * 60 + $fd_minutes;

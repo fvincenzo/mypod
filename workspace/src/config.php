@@ -49,13 +49,13 @@
     $feed_author = "My Private Podcast";
 
     // Feed author's contact email address
-    $feed_email="";
+    $feed_email = "mypod@" . preg_replace("(^https?://)", "", $feed_link);
 
     // Url of a 170x170 .png image to be used on the iTunes page
-    $feed_image = $feed_link . "/img/itunes_logo.png";
+    $feed_image = $feed_link . "/img/itunes_logo.jpg";
 
     // If your feed contains explicit material or not (yes, no, clean)
-    $feed_explicit = "false";
+    $feed_explicit = "clean";
 
     // iTunes major category of your feed
     $feed_category = "News";
